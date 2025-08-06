@@ -34,6 +34,12 @@ input{
     width: 18rem;
 }
 
+#respuestaInput{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .divContador{
     height: 20rem;
     width: 20rem;
