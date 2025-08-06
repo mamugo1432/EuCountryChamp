@@ -51,42 +51,101 @@ document.addEventListener("DOMContentLoaded", function(){
     let divJugador1 = document.getElementById("contadorJ1");
     divJugador1.style.backgroundColor="#84c3be";
 
-    
+     function resulltadoPais( pais, esPaisValido){
+
+        let div = document.getElementById("respuestaInput");
+
+            if( esPaisValido==false && paisesJ2.includes(pais) || paisesJ1.includes(pais)){
+                let resultado = document.createElement("p");
+                resultado.textContent = "El país ya ha sido introducido ❌";
+                resultado.style.color="#FF2F05";
+                div.appendChild(resultado);
+                setTimeout(() => {
+                    div.removeChild(resultado);
+                }, 1500);
+                //sleep(3000ms)
+                //div.removeChild(resultado);
+            }
+
+            if( esPaisValido == false && !paises.includes(pais)){
+
+                let resultado = document.createElement("p");
+                resultado.textContent = "El país no existe en la Unión Europea ❌";
+                resultado.style.color="#FF2F05";
+                div.appendChild(resultado);
+                setTimeout(() => {
+                    div.removeChild(resultado);
+                 }, 1500);
+                //sleep(3000ms)
+                //div.removeChild(resultado);
+            }
+
+            else if(esPaisValido==true && !paisesJ2.includes(pais) && !paisesJ1.includes(pais)){
+
+
+                if(turno==1){
+                    paisesJ1.push(pais);
+                     let divJugador1 = document.getElementById("contadorJ1");
+                    let contador = divJugador1.children[0];
+                    contador.textContent = paisesJ1.length;
+                }else{
+                    paisesJ2.push(pais);
+                    let divJugador2 = document.getElementById("contadorJ2");
+                    let contador = divJugador2.children[0];
+                    contador.textContent = paisesJ2.length;
+                }
+
+                  let resultado = document.createElement("p");
+                resultado.textContent = "El país es correcto ✅";
+                resultado.style.color="#05ff22ff";
+                div.appendChild(resultado);
+                setTimeout(() => {
+                    div.removeChild(resultado);
+                }, 1500);
+                //sleep(3000ms)
+                //div.removeChild(resultado);
+
+            }
+        }
     function registrarPais(turno){
 
-        let esValido = true;
+        let esValido = false;
         let pais = document.getElementById("inputPais").value;
         pais = formatearPalabra(pais);
 
-        if(paises.includes(pais) && turno===1){
-            paisesJ1.push(pais);
+        if(paises.includes(pais) && turno===1 && !paisesJ2.includes(pais)){
+            esValido = true;
         }
-        else if(paises.includes(pais) && turno===0){
-            paisesJ2.push(pais);
+        else if(paises.includes(pais) && turno===0 && !paisesJ1.includes(pais)){
+            esValido = true;
         }
-        else{
-            esValido = false;
-        }
+        
 
         return [esValido,pais];
 
     }
 
+   
+    
+    
+
     document.getElementById("inputPais").addEventListener("keydown", function(event){
         
         if(event.key==='Enter'){
            const  [esPaisValido,paisIntroducido] = registrarPais(turno);
+
             if(turno===1){
                 
                 if(esPaisValido===true){
-                    paisesJ1.push(paisIntroducido);
-                     let divJugador1 = document.getElementById("contadorJ1");
+                 resulltadoPais(paisIntroducido,esPaisValido);
+                   let divJugador1 = document.getElementById("contadorJ1");
                     divJugador1.style.backgroundColor="#a7a7a7";
                     turno=0;
                     let divJugador2 = document.getElementById("contadorJ2");
                     divJugador2.style.backgroundColor="#f34545ff";
                 }
                 else{
+                    resulltadoPais(paisIntroducido, esPaisValido);
                     turno=1;
                 }
                
@@ -94,8 +153,7 @@ document.addEventListener("DOMContentLoaded", function(){
             else if(turno===0){
 
                 if(esPaisValido===true){
-                    paisesJ2.push(paisIntroducido);
-
+                resulltadoPais(paisIntroducido,esPaisValido);
                 let divJugador2 = document.getElementById("contadorJ2");
                 divJugador2.style.backgroundColor="#a7a7a7";
                 turno=1;
@@ -103,6 +161,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 divJugador1.style.backgroundColor="#84c3be";
                 }
                 else{
+                    resulltadoPais(paisIntroducido, esPaisValido);
                     turno=0;
                 }
 
