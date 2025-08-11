@@ -48,6 +48,10 @@ document.addEventListener("DOMContentLoaded", function(){
     const paisesJ2=[];
     let turno=1;
 
+    if(paisesJ2.length===13){
+        alert("Ha ocurrido un empate por límite de puntos");
+    }
+
     let divJugador1 = document.getElementById("contadorJ1");
     divJugador1.style.backgroundColor="#84c3be";
 
@@ -63,8 +67,6 @@ document.addEventListener("DOMContentLoaded", function(){
                 setTimeout(() => {
                     div.removeChild(resultado);
                 }, 1500);
-                //sleep(3000ms)
-                //div.removeChild(resultado);
             }
 
             if( esPaisValido == false && !paises.includes(pais)){
@@ -76,8 +78,6 @@ document.addEventListener("DOMContentLoaded", function(){
                 setTimeout(() => {
                     div.removeChild(resultado);
                  }, 1500);
-                //sleep(3000ms)
-                //div.removeChild(resultado);
             }
 
             else if(esPaisValido==true && !paisesJ2.includes(pais) && !paisesJ1.includes(pais)){
@@ -102,8 +102,6 @@ document.addEventListener("DOMContentLoaded", function(){
                 setTimeout(() => {
                     div.removeChild(resultado);
                 }, 1500);
-                //sleep(3000ms)
-                //div.removeChild(resultado);
 
             }
         }
@@ -124,10 +122,6 @@ document.addEventListener("DOMContentLoaded", function(){
         return [esValido,pais];
 
     }
-
-   
-    
-    
 
     document.getElementById("inputPais").addEventListener("keydown", function(event){
         
@@ -153,12 +147,15 @@ document.addEventListener("DOMContentLoaded", function(){
             else if(turno===0){
 
                 if(esPaisValido===true){
-                resulltadoPais(paisIntroducido,esPaisValido);
-                let divJugador2 = document.getElementById("contadorJ2");
-                divJugador2.style.backgroundColor="#a7a7a7";
-                turno=1;
-                let divJugador1 = document.getElementById("contadorJ1");
-                divJugador1.style.backgroundColor="#84c3be";
+                    resulltadoPais(paisIntroducido,esPaisValido);
+                   if(paisesJ2.length===13){
+                        alert("Ha ocurrido un empate por límite de puntos");
+    }
+                     let divJugador2 = document.getElementById("contadorJ2");
+                    divJugador2.style.backgroundColor="#a7a7a7";
+                    turno=1;
+                    let divJugador1 = document.getElementById("contadorJ1");
+                    divJugador1.style.backgroundColor="#84c3be";
                 }
                 else{
                     resulltadoPais(paisIntroducido, esPaisValido);
@@ -171,6 +168,15 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     })
 
-    
+    document.getElementById("boton").addEventListener("click", function(){
+
+
+        if (turno===1){
+            alert("Ha ganado el Jugador 2");
+        }else{
+            alert("Ha ganado el Jugador 1");
+        }
+        document.location.reload();
+    })
 
 })
