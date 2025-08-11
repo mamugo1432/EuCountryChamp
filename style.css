@@ -41,8 +41,8 @@ input{
 }
 
 .divContador{
-    height: 20rem;
-    width: 20rem;
+    height: 24rem;
+    width: 24rem;
     background-color: rgb(167, 167, 167);
     display: flex;
     align-items: center;
@@ -70,7 +70,7 @@ footer{
 
 #boton{
     margin-top: 20%;
-    border-radius: 10%;
+    border: 2px solid black;
     color: #F7F7B2;
     background-color:#171796 ;
     font-size:medium ;
