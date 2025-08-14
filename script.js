@@ -132,6 +132,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 
                 if(esPaisValido===true){
                  resulltadoPais(paisIntroducido,esPaisValido);
+                 document.getElementById("inputPais").value="";
                    let divJugador1 = document.getElementById("contadorJ1");
                     divJugador1.style.backgroundColor="#a7a7a7";
                     turno=0;
@@ -151,6 +152,7 @@ document.addEventListener("DOMContentLoaded", function(){
                    if(paisesJ2.length===13){
                         alert("Ha ocurrido un empate por límite de puntos");
     }
+                document.getElementById("inputPais").value="";
                      let divJugador2 = document.getElementById("contadorJ2");
                     divJugador2.style.backgroundColor="#a7a7a7";
                     turno=1;
